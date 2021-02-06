@@ -1,0 +1,13 @@
+#meal-list .meal-card {
+    height: 100%;
+}
+#meal-image {
+    height: 400px;
+}
+#meal-image img {
+    height:100%;
+    width: 60%;
+}
+#meal-detail {
+    display: none;
+}
