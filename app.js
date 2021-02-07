@@ -41,6 +41,8 @@ function renderMeals(mealList) {
         newMeal.addEventListener("click", () => {
             const mealId = element.idMeal;
 
+            document.getElementById("ingredient-list").innerHTML = "";
+
             fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
                 .then(response => response.json())
                 .then(data => renderMealDetail(data));
@@ -64,7 +66,7 @@ function renderMealDetail(meal) {
         const ingredientName = mealObject[ingredientKey];
         const ingredientMeasurement = mealObject[measurementKey];
         
-        if (ingredientName === "") {
+        if (ingredientName === "" || ingredientName === null) {
             break;
         } else {
            const ingredientList = document.getElementById("ingredient-list");
