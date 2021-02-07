@@ -60,13 +60,16 @@ function renderMealDetail(meal) {
     //Creating ingredients list
     for (let i = 1; i <= 20; i++) {
         const ingredientKey = "strIngredient"+i;
+        const measurementKey = "strMeasure"+i;
         const ingredientName = mealObject[ingredientKey];
+        const ingredientMeasurement = mealObject[measurementKey];
+        
         if (ingredientName === "") {
             break;
         } else {
            const ingredientList = document.getElementById("ingredient-list");
            const ingredient = document.createElement("li");
-           ingredient.innerText = ingredientName;
+           ingredient.innerText = ingredientMeasurement + " " + ingredientName;
            ingredientList.appendChild(ingredient);
         }
     }
