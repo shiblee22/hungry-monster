@@ -34,7 +34,7 @@ function renderMeals(mealList) {
                 </div>
             </div>`
 
-        newMeal.className = "col-12 col-md-6 col-lg-3 mt-3";
+        newMeal.className = "col-12 col-md-6 col-lg-3 mt-5";
         newMeal.innerHTML = mealCard;
         mealsDiv.appendChild(newMeal);
 
