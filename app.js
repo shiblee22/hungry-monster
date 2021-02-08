@@ -23,7 +23,7 @@ function renderMeals(mealList) {
         const newMeal = document.createElement('div');
         const mealCard =
             `<div class="card meal-card">
-                <img src="${mealImage}" class="card-img-top">
+                <img src="${mealImage}" class="card-img-top" style = "height: 80%;">
                 <div class="card-body">
                     <h5 class="card-title text-center">${mealName}</h5>
                 </div>
