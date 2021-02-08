@@ -8,13 +8,8 @@ function handleMealSearch() {
 
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchedMeal}`)
         .then(response => response.json())
-        .then(data => {
-            if (data.meals === null) {
-                showError();
-            } else {
-                renderMeals(data);
-            }
-        })
+        .then(data => renderMeals(data))
+        .catch(error => showError(error))
 };
 
 //function to render meals list
@@ -30,7 +25,7 @@ function renderMeals(mealList) {
             `<div class="card meal-card">
                 <img src="${mealImage}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">${mealName}</h5>
+                    <h5 class="card-title text-center">${mealName}</h5>
                 </div>
             </div>`
 
@@ -61,25 +56,26 @@ function renderMealDetail(meal) {
 
     //Creating ingredients list
     for (let i = 1; i <= 20; i++) {
-        const ingredientKey = "strIngredient"+i;
-        const measurementKey = "strMeasure"+i;
+        const ingredientKey = "strIngredient" + i;
+        const measurementKey = "strMeasure" + i;
         const ingredientName = mealObject[ingredientKey];
         const ingredientMeasurement = mealObject[measurementKey];
-        
+
         if (ingredientName === "" || ingredientName === null) {
             break;
         } else {
-           const ingredientList = document.getElementById("ingredient-list");
-           const ingredient = document.createElement("li");
-           ingredient.innerText = ingredientMeasurement + " " + ingredientName;
-           ingredientList.appendChild(ingredient);
+            const ingredientList = document.getElementById("ingredient-list");
+            const ingredient = document.createElement("li");
+            ingredient.innerText = ingredientMeasurement + " " + ingredientName;
+            ingredientList.appendChild(ingredient);
         }
     }
     document.getElementById("meal-detail").style = "display : block";
 }
 
 //function that called when response is null
-function showError() {
+function showError(error) {
+    console.log(error);
     document.getElementById("meal-list").innerHTML = `
     <h1 class="text-center">Oops!</h1>
     <h3 class="text-center">No Meal Matched To Your Search</h3>
